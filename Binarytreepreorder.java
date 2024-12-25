@@ -147,6 +147,57 @@ public class Binarytreepreorder {
                 }
             }
         }
+
+        // recursive func to print kth level of a binary tree
+        public static void kLevel(Node root , int level , int k){
+            if(root == null){
+                return;
+            }
+            if(level == k){
+                System.out.print(root.data + " ");
+            }
+
+            kLevel(root.left, level+1, k);
+            kLevel(root.right, level+1, k);
+        }
+
+        // helper function for the func lca
+        public static boolean getPath(Node root , int n , ArrayList<Node> path){
+            if(root == null){
+                return false;
+            }
+            path.add(root);
+            if(root.data == n){
+                return true;
+            }
+
+            boolean foundLeft = getPath(root.left , n , path);
+            boolean foundRight = getPath(root.right, n, path);
+
+            if(foundLeft || foundRight){
+                return true;
+            }
+
+            path.remove(path.size()-1);
+            return false;
+        }
+
+        // func to find lowest common ancestor
+        public static Node lca(Node root , int n1 , int n2){
+            ArrayList<Node> path1 = new ArrayList<>();
+            ArrayList<Node> path2 = new ArrayList<>();
+
+            getPath(root , n1 , path1);
+            getPath(root , n2 , path2);
+
+            int i =0;
+            for(; i<path1.size() && i <path2.size();i++){
+                if(path1.get(i) != path2.get(i)){
+                    break;
+                }
+            }
+            return path1.get(i-1);
+        }
     }
 
     public static void main(String[] args) {
@@ -162,6 +213,13 @@ public class Binarytreepreorder {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
+        /*
+                        1
+                       /  \
+                      2    3
+                     / \   / \
+                    4   5 6   7
+         */
 
         Node subRoot = new Node(2);
         subRoot.left = new Node(4);
@@ -169,6 +227,10 @@ public class Binarytreepreorder {
 
         // System.out.println(tree.isSubtree(root, subRoot));
         // tree.topView(root);
-        tree.kthLevel(root, 3);
+        // tree.kthLevel(root, 3);
+        // System.out.println();
+        // tree.kLevel(root, 1, 3);
+
+        System.out.println(tree.lca(root, 4, 5).data);
     }
 }
