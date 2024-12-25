@@ -109,6 +109,44 @@ public class Binarytreepreorder {
             }
             System.out.println();
         }
+
+        // iterative func to print kth level of a tree
+        public static void kthLevel(Node root , int k){
+            if(root == null){
+                System.out.println("Tree is empty");
+                return;
+            }
+
+            Queue<Node> q = new LinkedList<>();
+            int level = 1;
+            q.add(root);
+            q.add(null);
+
+            while(!q.isEmpty()){
+                Node currNode = q.remove();
+
+                if(currNode == null){
+                    if(q.isEmpty()){
+                        break;
+                    }
+                    else{
+                        q.add(null);
+                        level++;
+                    }
+                }
+                else{
+                    if(level == k){
+                        System.out.print(currNode.data + " ");
+                    }
+                    if(currNode.left != null){
+                        q.add(currNode.left);
+                    }
+                    if(currNode.right != null){
+                        q.add(currNode.right);
+                    }
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -130,6 +168,7 @@ public class Binarytreepreorder {
         subRoot.right = new Node(5);
 
         // System.out.println(tree.isSubtree(root, subRoot));
-        tree.topView(root);
+        // tree.topView(root);
+        tree.kthLevel(root, 3);
     }
 }
