@@ -198,6 +198,58 @@ public class Binarytreepreorder {
             }
             return path1.get(i-1);
         }
+
+        // find lca anoher way function 
+        public static Node lca2(Node root , int n1 , int n2){
+            if(root == null || root.data == n1 || root.data == n2){
+                return root;
+            }
+
+            Node left = lca2(root.left, n1, n2);
+            Node right = lca2(root.right, n1, n2);
+
+            if(left == null){
+                return right;
+            }
+            if(right == null){
+                return left;
+            }
+            
+            return root;
+        }
+
+        // helper func to minDist function where we are calculating the dist bw lca and n
+        public static int lcaDist(Node root , int n){
+            if(root == null){
+                return -1;
+            }
+
+            if(root.data == n){
+                return 0;
+            }
+
+            int left = lcaDist(root.left, n);
+            int right = lcaDist(root.right, n);
+
+            if(left == -1 && right == -1){
+                return -1;
+            }
+            else if(left == -1){
+                return right+1;
+            }
+            else{
+                return left+1;
+            }
+        }
+
+        // func to find min dist bw to nodes
+        public static int minDist(Node root , int n1 , int n2){
+            Node lca = lca2(root, n1, n2);
+            int dist1 = lcaDist(lca , n1);
+            int dist2 = lcaDist(lca , n2);
+
+            return dist1 + dist2;
+        }
     }
 
     public static void main(String[] args) {
@@ -231,6 +283,8 @@ public class Binarytreepreorder {
         // System.out.println();
         // tree.kLevel(root, 1, 3);
 
-        System.out.println(tree.lca(root, 4, 5).data);
+        // System.out.println(tree.lca(root, 4, 5).data);
+        // System.out.println(tree.lca2(root, 4, 5).data);
+        System.out.println(tree.minDist(root, 4, 6));
     }
 }
