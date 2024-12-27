@@ -199,7 +199,7 @@ public class Binarytreepreorder {
             return path1.get(i-1);
         }
 
-        // find lca anoher way function 
+        // find lca another way function 
         public static Node lca2(Node root , int n1 , int n2){
             if(root == null || root.data == n1 || root.data == n2){
                 return root;
@@ -250,6 +250,59 @@ public class Binarytreepreorder {
 
             return dist1 + dist2;
         }
+
+        // function to find kth ancestor
+        public static int kAncestor(Node root , int n , int k){
+            if(root == null){
+                return -1;
+            }
+
+            if(root.data == n){
+                return 0;
+            }
+            
+            int left = kAncestor(root.left, n, k);
+            int right = kAncestor(root.right, n, k);
+
+            if(left == -1 && right == -1){
+                return -1;
+            }
+
+            int max = Math.max(left , right);
+
+            if(max +1 == k){
+                System.out.println(root.data);
+            }
+           return max+1;
+        }
+
+        // function to find the sum tree of a binary tree
+        public static int sumTree(Node root){
+            if(root ==  null){
+                return 0;
+            }
+
+            int lc = sumTree(root.left);
+            int rc = sumTree(root.right);
+
+            int newLeft = root.left == null ? 0 : root.left.data;
+            int newRight = root.right == null ? 0 : root.right.data;
+
+            int data = root.data;
+            root.data = newLeft+ lc + newRight + rc;
+            return data;
+        }
+
+        // preorder traversal
+        public static void preorder(Node root){
+            if(root == null){
+                return;
+            }
+
+            System.out.print(root.data+" ");
+            preorder(root.left);
+            preorder(root.right);
+        }
     }
 
     public static void main(String[] args) {
@@ -285,6 +338,9 @@ public class Binarytreepreorder {
 
         // System.out.println(tree.lca(root, 4, 5).data);
         // System.out.println(tree.lca2(root, 4, 5).data);
-        System.out.println(tree.minDist(root, 4, 6));
+        // System.out.println(tree.minDist(root, 4, 6));
+        // tree.kAncestor(root, 5, 1);
+        tree.sumTree(root);
+        tree.preorder(root);
     }
 }
