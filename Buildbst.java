@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Buildbst {
 
     static class Node{
@@ -85,6 +87,48 @@ public class Buildbst {
         }
         return root;
     }
+
+    // fuction to print in the range 
+    public static void printInRange(Node root , int k1 , int k2){
+        if(root == null){
+            return;
+        }
+
+        if(root.data > k1){
+            printInRange(root.left, k1, k2);
+        }
+
+        if(root.data >= k1 && root.data <= k2){
+            System.out.print(root.data +" ");
+        }
+
+        if(root.data < k2){
+            printInRange(root.right, k1, k2);
+        }
+    }
+
+    // helper function for roottoleaf functiion 
+    public static void printPath(ArrayList<Integer> path){
+        for(int i =0;i<path.size();i++){
+            System.out.print(path.get(i)+ "->");
+        }
+        System.out.println("Null");
+    }
+
+    // function to print paths from root to leaf
+    public static void rootToLeaf(Node root , ArrayList<Integer> path){
+        if(root == null){
+            return;
+        }
+        path.add(root.data);
+        if(root.left == null && root.right == null){
+            printPath(path);
+        }
+        rootToLeaf(root.left, path);
+        rootToLeaf(root.right, path);
+        path.remove(path.size()-1);
+    }
+
     public static void main(String[] args) {
         int values[] = {8,5,3,1,4,6,10,11,14};
         Node root = null;
@@ -93,11 +137,14 @@ public class Buildbst {
             root = insert(root, values[i]);
         }
 
-        root = delete(root, 1);
+        // root = delete(root, 1);
 
-        inorder(root);
-        System.out.println();
-        System.out.print(search(root, 13));
-
+        // inorder(root);
+        // System.out.println();
+        // System.out.print(search(root, 13));
+        // printInRange(root, 5, 12);
+        ArrayList<Integer> path = new ArrayList<>();
+        rootToLeaf(root, path);
+        printPath(path);
     }
 }
