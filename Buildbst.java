@@ -129,6 +129,35 @@ public class Buildbst {
         path.remove(path.size()-1);
     }
 
+    // function for validate bst 
+    public static boolean isValidate(Node root , Node min , Node max){
+        if(root == null){
+            return true;
+        }
+
+        if(min != null && root.data <= min.data){
+            return false;
+        }
+        
+        if(max != null && root.data >= max.data){
+            return false;
+        }
+        return isValidate(root.left, min, root) && isValidate(root.right, root, max);
+    }
+
+    // function to find a mirror bst 
+    public static Node mirror(Node root){
+        if(root == null){
+            return null;
+        }
+        Node leftS = mirror(root.left);
+        Node rightS = mirror(root.right);
+
+        root.left = rightS;
+        root.right = leftS;
+        return root;
+    }
+
     public static void main(String[] args) {
         int values[] = {8,5,3,1,4,6,10,11,14};
         Node root = null;
@@ -139,12 +168,16 @@ public class Buildbst {
 
         // root = delete(root, 1);
 
-        // inorder(root);
         // System.out.println();
         // System.out.print(search(root, 13));
         // printInRange(root, 5, 12);
-        ArrayList<Integer> path = new ArrayList<>();
-        rootToLeaf(root, path);
-        printPath(path);
+        // ArrayList<Integer> path = new ArrayList<>();
+        // rootToLeaf(root, path);
+        // printPath(path);
+        // System.out.println(isValidate(root, null, null));
+        inorder(root);
+        Node mirrorN = mirror(root);
+        System.out.println();
+        inorder(mirrorN);
     }
 }
