@@ -339,8 +339,8 @@ public class Binarytreepreorder {
         // System.out.println(tree.lca(root, 4, 5).data);
         // System.out.println(tree.lca2(root, 4, 5).data);
         // System.out.println(tree.minDist(root, 4, 6));
-        // tree.kAncestor(root, 5, 1);
-        tree.sumTree(root);
-        tree.preorder(root);
+        tree.kAncestor(root, 5, 2);
+        // tree.sumTree(root);
+        // tree.preorder(root);
     }
 }
