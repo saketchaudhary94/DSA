@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.LinkedList;
 
 
-public class Treetraversal {
+public class Binarytree2 {
     static class Node{
         int data;
         Node left;

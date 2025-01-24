@@ -1,7 +1,7 @@
 import java.util.*;
 import java.util.LinkedList;
 
-public class Binarytreepreorder {
+public class Binarytree1 {
 
     static class Node{
         int data;
