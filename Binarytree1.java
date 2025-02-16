@@ -305,6 +305,62 @@ public class Binarytree1 {
         }
     }
 
+
+// construct a binary tree using inorder and preorder -> copy code and run on leetcode 105
+
+//     class Solution {
+//     HashMap<Integer , Integer> map; 
+//     int idx;
+
+//     public TreeNode buildTree1(int preorder[] , int s , int e){
+//         if(s > e || idx >= preorder.length){
+//             return null;
+//         }
+//         int val = preorder[idx++];
+//         TreeNode root = new TreeNode(val);
+//         root.left = buildTree1(preorder , s , map.get(val)-1);
+//         root.right = buildTree1(preorder , map.get(val)+1 , e);
+
+//         return root;
+//     }
+
+//     public TreeNode buildTree(int[] preorder, int[] inorder) {
+//         map = new HashMap<>();
+//         idx = 0;
+//         for(int i =0;i<preorder.length;i++){
+//             map.put(inorder[i] , i);
+//         }
+//         return buildTree1(preorder , 0 , preorder.length-1);
+//     }
+//    }
+
+
+// construct a binary tree using inorder and postorder -> copy code and run on leetcode 106
+
+// class Solution {
+//     HashMap<Integer , Integer> map;
+//     int idx;
+    
+//     public TreeNode buildTree1(int postorder[] , int s , int e){
+//         if(s > e || idx < 0){
+//             return null;
+//         }
+//         int val = postorder[idx--];
+//         TreeNode root = new TreeNode(val);
+//         root.right = buildTree1(postorder , map.get(val)+1 , e);
+//         root.left = buildTree1(postorder , s , map.get(val)-1);
+//         return root;
+//     }
+//     public TreeNode buildTree(int[] inorder, int[] postorder) {
+//         map = new HashMap<>();
+//         idx = postorder.length-1;
+//         for(int i =0;i<inorder.length;i++){
+//             map.put(inorder[i] , i);
+//         }
+//         return buildTree1(postorder , 0 , postorder.length-1);
+//     }
+//    }
+
     public static void main(String[] args) {
         // int nodes[] = {1,2,4 ,-1,-1,5,-1,-1,3,-1,6,-1,-1};
         Binarytree tree = new Binarytree();
