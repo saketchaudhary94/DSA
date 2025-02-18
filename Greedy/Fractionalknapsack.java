@@ -15,7 +15,7 @@ public class Fractionalknapsack {
             ratio[i][1] = val[i]/ (double)wt[i];
         }
 
-        Arrays.sort(ratio , (a,b)-> Double.compare(a[1], b[1]));
+        Arrays.sort(ratio , (a,b)-> Double.compare(b[1], a[1]));
 
         int capacity = w;
         int finalVal = 0;
