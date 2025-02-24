@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Buildbst {
+public class BinarySearchTree1 {
 
     static class Node{
         Node left;
