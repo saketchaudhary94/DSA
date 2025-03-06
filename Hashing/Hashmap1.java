@@ -1,3 +1,4 @@
+package Hashing;
 import java.util.*;
 
 public class Hashmap1 {

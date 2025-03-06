@@ -1,5 +1,5 @@
+package Hashing;
 import java.util.*;
-import java.util.LinkedList;
 
 public class Implementhashmap {
     static class HashMap<K,V>{
