@@ -111,6 +111,43 @@ public class Sorting {
         conquer(arr,si,mid,ei);
     }
 
+    // quick sort 
+    public static int partition(int arr[] , int s , int e){
+        int pvt = arr[s];
+        int cnt = 0;
+        
+        for(int i =s+1;i <= e;i++){
+            if(arr[i] <= pvt){
+                cnt++;
+            }
+        }
+        int ci = s + cnt;
+        int temp = arr[s];
+        arr[s] = arr[ci];
+        arr[ci] = temp;
+
+        int i = s , j = e;
+        while(i < ci && j > ci){
+            while(arr[i] <= pvt) i++;
+            while(arr[j] > pvt) j--;
+            if(i < ci && j > ci){
+                int temp2 = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp2;
+            }
+        }
+        return ci;
+    }
+
+    public static void quickSort(int arr[] , int s , int e){
+        if(s >= e){
+            return;
+        }
+        int pvt = partition(arr , s , e);
+        quickSort(arr, s, pvt -1);
+        quickSort(arr, pvt+1, e);
+    }
+
     // to print an array
     public static void print(int arr[]){
         for(int i =0;i< arr.length;i++){
@@ -128,13 +165,19 @@ public class Sorting {
         // print(arr);
 
         // for merge sort 
-        int arr[] = {6,3,9,5,2,8};
-        int n = arr.length;
-        divide(arr , 0 , n-1);
+        // int arr[] = {6,3,9,5,2,8};
+        // int n = arr.length;
+        // divide(arr , 0 , n-1);
 
-        for(int i=0;i<arr.length;i++){
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
+        // for(int i=0;i<arr.length;i++){
+        //     System.out.print(arr[i] + " ");
+        // }
+        // System.out.println();
+
+
+        // for quick sort 
+        int arr[] = {6,3,9,8,2,5};
+        quickSort(arr, 0, arr.length-1);
+        print(arr);
     }
 }
