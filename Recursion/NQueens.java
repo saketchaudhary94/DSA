@@ -1,3 +1,4 @@
+package Recursion;
 public class NQueens {
 
     public static boolean isPossible(char board[][] ,int row , int col){
