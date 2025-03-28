@@ -1,4 +1,5 @@
-public class tiling {
+package Recursion;
+public class TilingProblem {
 
     public static int tilingProblem(int n ){
         if(n ==0 || n==1){
