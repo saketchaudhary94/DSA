@@ -1,3 +1,4 @@
+package CSES;
 import java.util.*;
 
 public class WeirdAlgo {
