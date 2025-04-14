@@ -1,3 +1,4 @@
+package SlidingWindow;
 public class MaxPointsFromCards {
 
     public static int maxPointsObtainedFromCards(int arr[] ,int  k){
