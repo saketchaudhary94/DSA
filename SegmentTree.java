@@ -78,7 +78,7 @@ public class SegmentTree {
 
     // get sum from sum tree
     public static int getSumUtil(int i , int si , int sj , int qi , int qj){
-        if(qj <= si || qi >= sj){
+        if(qj < si || qi > sj){
             return 0;
         }
         
