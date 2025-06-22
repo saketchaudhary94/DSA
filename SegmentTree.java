@@ -40,20 +40,20 @@ public class SegmentTree {
 
     // update the max tree
     public static void updateUtil2(int i , int si , int sj , int idx , int newVal){
-        if(idx < si || idx > sj){
+        if(si == sj){
+            tree[i] = newVal;
             return;
         }
 
-        if(si == sj){
-            tree[i] =  newVal;
-        }
-        
-        if(si != sj){
-            tree[i] = Math.max(tree[i] , newVal);
-            int mid = (si + sj)/2;
+        int  mid = si + (sj - si)/2;
+        if(idx >= si && idx <= mid){
             updateUtil2(2*i+1, si, mid, idx, newVal);
-            updateUtil2(2*i+2, mid+1, sj, idx, newVal);
         }
+        else{
+            updateUtil2(2*i+2, mid+1,sj, idx, newVal);
+        }
+
+        tree[i] = Math.max(tree[2*i+1] , tree[2*i+2]);
     }
 
     public static void update2(int arr[] , int idx  , int newVal){

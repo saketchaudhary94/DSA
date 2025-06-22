@@ -1,4 +1,4 @@
-package CSES;
+
 public class MosAlgorithm {
 
     public static int rangeQuery(int prefix[] ,int len , int arr[] , int l , int r){
